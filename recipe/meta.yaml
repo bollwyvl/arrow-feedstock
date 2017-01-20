@@ -1,4 +1,4 @@
-{% set version = "0.7.0" %}
+{% set version = "0.10.0" %}
 {% set gh_org = "crsmithdev" %}
 {% set gh_repo = "arrow" %}
 
@@ -10,7 +10,7 @@ package:
 source:
   fn: {{ gh_repo }}-{{ version }}.tar.gz
   url: https://github.com/{{ gh_org }}/{{ gh_repo }}/archive/{{ version }}.tar.gz
-  sha256: b09bb271247f134f53fcecc8aa09395c23b04633bdd3db22e28f3efb8ccfcabc
+  sha256: 4ed4f6c86e9d3e75a1f77af13d6f5a08f6891ab5c815b20f1f7b7c88ffcad118
 
 build:
   number: 0
@@ -24,12 +24,16 @@ requirements:
     - python-dateutil
 
 test:
-  files:
-    - requirements.txt
+  source_files:
+    - tests
   requires:
-    - nose
+    - chai
     - coverage
+    - nose
+    - nose-cov
     - simplejson
+  commands:
+    - nosetests
 
 about:
   home: https://github.com/{{ gh_org }}/{{ gh_repo }}
